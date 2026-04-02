@@ -1,28 +1,32 @@
-
+import { useState } from 'react';
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import Navbar from '@/components/Navbar';
+import Cursor from '@/components/Cursor';
+import HomePage from '@/pages/HomePage';
+import GalleryPage from '@/pages/GalleryPage';
 
-const queryClient = new QueryClient();
+type Page = 'home' | 'gallery';
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+const App = () => {
+  const [currentPage, setCurrentPage] = useState<Page>('home');
+
+  const navigate = (page: Page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
     <TooltipProvider>
       <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="bg-noir min-h-screen">
+        <Cursor />
+        <Navbar currentPage={currentPage} onNavigate={navigate} />
+        {currentPage === 'home' && <HomePage onNavigate={navigate} />}
+        {currentPage === 'gallery' && <GalleryPage />}
+      </div>
     </TooltipProvider>
-  </QueryClientProvider>
-);
+  );
+};
 
 export default App;
