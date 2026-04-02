@@ -1,0 +1,5 @@
+{
+  "upload-photo": "https://functions.poehali.dev/13c84c32-b8bc-4b43-be8e-79e74f956056",
+  "list-photos": "https://functions.poehali.dev/9a15486a-827f-4279-bd19-6de8412f9e35",
+  "delete-photo": "https://functions.poehali.dev/882f2ac3-82f0-4b0d-a030-0b63fb69e2f7"
+}

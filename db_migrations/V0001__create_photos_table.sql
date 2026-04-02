@@ -1,0 +1,13 @@
+CREATE TABLE t_p26818699_photo_playboy_journa.photos (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL DEFAULT '',
+  category VARCHAR(100) NOT NULL DEFAULT 'Портрет',
+  year INTEGER NOT NULL DEFAULT 2025,
+  month INTEGER NOT NULL DEFAULT 1,
+  date_label VARCHAR(100) NOT NULL DEFAULT '',
+  tags TEXT[] NOT NULL DEFAULT '{}',
+  aspect VARCHAR(20) NOT NULL DEFAULT 'square',
+  s3_key VARCHAR(500) NOT NULL,
+  cdn_url TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
